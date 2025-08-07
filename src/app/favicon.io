@@ -1,0 +1,1 @@
+https://vscode-remote+firebase-002dstudio-002d1752414580122-002ecluster-002dw5vd22whf5gmav2vgkomwtc4go-002ecloudworkstations-002edev.vscode-resource.vscode-cdn.net/home/user/studio/src/app/favicon.ico?version%3D1754590533949

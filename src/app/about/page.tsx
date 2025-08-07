@@ -1,0 +1,94 @@
+
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Lightbulb, Heart, Users } from "lucide-react";
+import React from "react";
+
+export default function AboutPage() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1">
+        <section className="w-full pt-12 md:pt-24 lg:pt-32 pb-10 md:pb-12 lg:pb-14 bg-secondary/20">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center text-center gap-12">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 mb-2">
+                  <Lightbulb className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Our Philosophy</h1>
+                <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                  A gentle approach to mental wellness, designed for students.
+                </p>
+                <p className="max-w-[800px] text-muted-foreground">
+                    College is a time of immense growth, but it can also be a period of significant stress and emotional challenge. We believe that mental wellness isn't about achieving a constant state of happiness, but about building the resilience to navigate the ups and downs of life.
+                </p>
+                <p className="max-w-[800px] text-muted-foreground">
+                    MindBloom was created to be a safe, non-judgmental space where you can pause, connect with your feelings, and find small, actionable steps to move forward. We're not here to replace professional therapy, but to offer a first step, a daily companion, and a reminder that you're not alone.
+                </p>
+              </div>
+              <div className="w-full max-w-md mx-auto flex items-center justify-center">
+                 <div className="bg-secondary/40 p-8 rounded-xl text-center shadow-md">
+                    <blockquote className="italic text-muted-foreground text-lg">
+                        "The best time to plant a tree was 20 years ago. The second best time is now."
+                    </blockquote>
+                    <p className="mt-4 text-sm font-semibold">— Chinese Proverb</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full pt-20 md:pt-24 lg:pt-32 pb-12 md:pb-24 lg:pb-32">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Our Core Principles</h2>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Guiding our approach to support you.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-16 mt-12">
+              <Card className="shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-none bg-secondary/30">
+                <CardHeader className="items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 mb-4">
+                        <Lightbulb className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <CardTitle className="text-center">Small, Actionable Steps</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground text-center">We believe in the power of micro-habits. Lasting change comes from small, consistent actions, not overwhelming transformations.</p>
+                </CardContent>
+              </Card>
+               <Card className="shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-none bg-secondary/30">
+                <CardHeader className="items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 mb-4">
+                        <Heart className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <CardTitle className="text-center">Empathy & Non-Judgment</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground text-center">This is a safe space. All feelings are valid, and our goal is to provide gentle, understanding support without pressure.</p>
+                </CardContent>
+              </Card>
+               <Card className="shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-none bg-secondary/30">
+                <CardHeader className="items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 mb-4">
+                        <Users className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <CardTitle className="text-center">The Power of Connection</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground text-center">Knowing you're not alone is crucial. Our community wall is a place for shared experiences and mutual support, always with your privacy in mind.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
