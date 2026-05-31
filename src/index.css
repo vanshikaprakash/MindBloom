@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bloom-gradient text-slate-700 font-sans min-h-screen antialiased;
+  }
+
+  .dark body {
+    @apply bg-bloom-gradient-dark text-slate-200;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-slate-900;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4 {
+    @apply text-white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-3xl border border-white/40 bg-white/60 shadow-soft backdrop-blur-2xl;
+  }
+
+  .dark .glass-card {
+    @apply border-white/10 bg-white/5 shadow-card;
+  }
+
+  .glow-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-glow transition duration-300;
+    background-image: linear-gradient(120deg, #f3b7d1, #c9b7ff, #b8dcff);
+    background-size: 200% 200%;
+    animation: shimmer 8s ease infinite;
+  }
+
+  .glow-button:hover {
+    @apply scale-[1.02] shadow-xl;
+  }
+
+  .section-pad {
+    @apply px-6 py-16 md:px-10 lg:px-16;
+  }
+
+  .pill {
+    @apply rounded-full bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-600;
+  }
+
+  .dark .pill {
+    @apply bg-white/10 text-slate-200;
+  }
+
+  .input-shell {
+    @apply flex items-center gap-3 rounded-2xl border border-white/40 bg-white/70 px-4 py-3 text-sm shadow-soft backdrop-blur-xl transition;
+  }
+
+  .input-shell:focus-within {
+    @apply border-bloom-lavender/70 ring-2 ring-bloom-lavender/30;
+  }
+
+  .dark .input-shell {
+    @apply border-white/10 bg-white/10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-shimmer,
+  .animate-breathe,
+  .animate-pulse-soft {
+    animation: none !important;
+  }
+}
