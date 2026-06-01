@@ -42,4 +42,4 @@ and sometimes you just need something that gets it without making it weird.
 
 ## 🛠️ wanna contribute?
 go for it. fork it, break it, fix it, pr it.
-just don't commit your .env. i will find out.
+just don't commit your .env or i will find out.
