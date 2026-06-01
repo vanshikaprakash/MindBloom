@@ -14,23 +14,30 @@ export default function MoodCheckIn() {
   const [suggestions, setSuggestions] = useState(aiSuggestions)
   const [loading, setLoading] = useState(false)
 
-  const handleAISuggestions = async () => {
-    setLoading(true)
-    try {
-      const response = await getGeminiSuggestions({
-        mood: selectedMood.label,
-        intensity,
-        notes,
-      })
-      if (response) {
-        setSuggestions(response.split('\n').filter(Boolean).slice(0, 6))
-      }
-    } catch (error) {
-      setSuggestions(aiSuggestions)
-    } finally {
-      setLoading(false)
+const handleAISuggestions = async () => {
+  setLoading(true)
+  try {
+    const response = await getGeminiSuggestions({
+      mood: selectedMood.label,
+      intensity,
+      notes,
+    })
+    if (response) {
+      // Strip markdown symbols and empty lines, keep meaningful lines only
+      const cleaned = response
+        .split('\n')
+        .map((line) => line.replace(/[*#`]/g, '').replace(/^\d+\.\s*/, '').trim())
+        .filter((line) => line.length > 10)
+        .slice(0, 6)
+      setSuggestions(cleaned)
     }
+  } catch (error) {
+    console.error('Gemini error:', error)
+    setSuggestions(aiSuggestions)
+  } finally {
+    setLoading(false)
   }
+}
 
   return (
     <section className="section-pad space-y-12">

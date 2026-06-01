@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getGeminiSuggestions } from '../lib/gemini.js'
 import { Send } from 'lucide-react'
 import GlassCard from '../components/ui/GlassCard.jsx'
 import SectionHeader from '../components/ui/SectionHeader.jsx'
@@ -22,22 +23,40 @@ export default function ChatCompanion() {
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
 
-  const sendMessage = () => {
-    if (!input.trim()) return
-    setMessages((prev) => [...prev, { from: 'user', text: input }])
-    setInput('')
-    setIsTyping(true)
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          from: 'bot',
-          text: 'Try this: set a 10-minute timer, write your top 2 tasks, then choose one you can finish tonight.',
-        },
-      ])
-      setIsTyping(false)
-    }, 1200)
+const sendMessage = async (text) => {
+  const messageText = text || input
+  if (!messageText.trim()) return
+
+  setMessages((prev) => [...prev, { from: 'user', text: messageText }])
+  setInput('')
+  setIsTyping(true)
+
+  try {
+    const response = await getGeminiSuggestions({
+      mood: 'general',
+      intensity: 50,
+      notes: messageText,
+    })
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        from: 'bot',
+        text: response
+          ? response.split('\n').find((l) => l.trim().length > 20)?.replace(/[*#`]/g, '').trim()
+            ?? response.slice(0, 300)
+          : 'I hear you. Take a breath — you are not alone in this.',
+      },
+    ])
+  } catch {
+    setMessages((prev) => [
+      ...prev,
+      { from: 'bot', text: 'Something went quiet on my end. But I am still here.' },
+    ])
+  } finally {
+    setIsTyping(false)
   }
+}
 
   return (
     <section className="section-pad space-y-12">
@@ -90,7 +109,7 @@ export default function ChatCompanion() {
                   key={prompt}
                   type="button"
                   className="rounded-2xl bg-white/70 px-4 py-2 text-left text-xs text-slate-600 shadow-soft transition hover:scale-[1.02] dark:bg-white/10 dark:text-slate-200"
-                  onClick={() => setInput(prompt)}
+                  onClick={() => sendMessage(prompt)}
                 >
                   {prompt}
                 </button>
